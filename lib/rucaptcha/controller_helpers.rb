@@ -22,8 +22,8 @@ module RuCaptcha
     def generate_rucaptcha
       res = RuCaptcha.generate()
       session_val = {
-        code: res[0],
-        time: Time.now.to_i
+          code: res[0],
+          time: Time.now.to_i
       }
       RuCaptcha.cache.write(rucaptcha_sesion_key_key, session_val, expires_in: RuCaptcha.config.expires_in)
       res[1]
@@ -78,7 +78,7 @@ module RuCaptcha
 
     def add_rucaptcha_validation_error
       if defined?(resource) && resource && resource.respond_to?(:errors)
-        resource.errors.add(:base, t('rucaptcha.invalid'))
+        resource.errors.add(:base, 'rucaptcha.invalid')
       end
       false
     end
